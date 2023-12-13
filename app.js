@@ -53,8 +53,6 @@ bigcircle.forEach((element) => {
 });
 
 // part 2
-gsap.registerPlugin(ScrollTrigger);
-
 var tl=gsap.timeline({
   scrollTrigger: {
     trigger: "#main",
@@ -73,13 +71,12 @@ tl.to(".text", { top: "-7%" }, "a")
   .to("#card-three", { top: "50%" }, "c")
   .to("#card-one", { scale: 0.8 }, "c")
   .to("#card-two", { scale: 0.9 }, "c");
-
 // Enable snapping
 ScrollTrigger.create({
   snap: {
     snapTo: { 
-      values: [0,0.24,0.33,0.40,0.48,0.78,0.90,0.91,0.92,0.93,0.94,0.95,1],
-      method: "progress",
+      values: [0,0.2,0.4,0.6,0.8,0.10,0.15,0.24,0.33,0.40,0.48,0.85,0.87,0.90,0.91,0.92,0.93,0.94,0.95,1],
+      method: "nearest",
       ease: "power1.inOut" 
     },
   },
