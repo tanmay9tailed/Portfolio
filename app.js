@@ -53,79 +53,37 @@ bigcircle.forEach((element) => {
 });
 
 // part 2
-var tl = gsap.timeline({
+gsap.registerPlugin(ScrollTrigger);
+
+var tl=gsap.timeline({
   scrollTrigger: {
     trigger: "#main",
-    // markers:true,
     start: "41% 50%",
     end: "100% 50%",
     scrub: 2,
     pin: true,
   },
-});
-tl.to(
-  ".text",
-  {
-    top: "-7%",
+})
+tl.to(".text", { top: "-7%" }, "a")
+  .to("#card-one", { top: "35%" }, "a")
+  .to("#card-two", { top: "140%" }, "a")
+  .to("#card-two", { top: "42%" }, "b")
+  .to("#card-one", { scale: 0.9 }, "b")
+  .to("#card-three", { top: "160%" }, "b")
+  .to("#card-three", { top: "50%" }, "c")
+  .to("#card-one", { scale: 0.8 }, "c")
+  .to("#card-two", { scale: 0.9 }, "c");
+
+// Enable snapping
+ScrollTrigger.create({
+  snap: {
+    snapTo: { 
+      values: [0,0.24,0.33,0.40,0.48,0.78,0.90,0.91,0.92,0.93,0.94,0.95,1],
+      method: "progress",
+      ease: "power1.inOut" 
+    },
   },
-  "a"
-)
-  .to(
-    "#card-one",
-    {
-      top: "35%",
-    },
-    "a"
-  )
-  .to(
-    "#card-two",
-    {
-      top: "140%",
-    },
-    "a"
-  )
-  .to(
-    "#card-two",
-    {
-      top: "42%",
-    },
-    "b"
-  )
-  .to(
-    "#card-one",
-    {
-      scale:0.9
-    },
-    "b"
-  )
-  .to(
-    "#card-three",
-    {
-      top: "160%",
-    },
-    "b"
-  )
-  .to(
-    "#card-three",
-    {
-      top: "50%",
-    },
-    "c"
-  )
-  .to(
-    "#card-one",
-    {
-      scale:0.8
-    },
-    "c"
- )
-  .to(
-    "#card-two",
-    {
-      scale:0.9
-    },
-    "c"
-  );
+});
 
 var t1 = gsap.timeline({
   duration: 1,
@@ -230,109 +188,3 @@ gsap.from("#card-one img", {
           scrub: 5,
         },
       });
-
-
-// function handleViewportChange() {
-//   if (window.innerWidth < 600) {
-//     gsap.from("#card-one img", {
-//       // opacity:0,
-//       y: "130%",
-//       // delay:1,
-//       duration: 2,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         // markers:true,
-//         start: "-950% 60%",
-//         end: "-850% 60%",
-//         // start: "-270% 60%",
-//         // end: "-250% 60%",
-//         scrub:5,
-//       },
-//     });
-//     gsap.from("#card-one .left-cd1", {
-//       // opacity:0,
-//       y: "-115%",
-//       // delay:1,
-//       duration: 2,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         // markers:true,
-//         // start: "-270% 60%",
-//         // end: "-250% 60%",
-//         start: "-910% 60%",
-//         end: "-850% 60%",
-//         scrub:5,
-//       },
-//     });
-//     gsap.from("#card-two img", {
-//       opacity: 0,
-//       y: "25",
-//       delay: 1,
-//       duration: 1,
-//       stagger: 0.3,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         // start: "-200% 70%",
-//         // end: "-160% 84%",
-//         start: "-580% 70%",
-//         end: "-520% 70%",
-//         // markers:true,
-//         scrub: 5,
-//       },
-//     });
-//   }
-//   else{
-//     gsap.from("#card-one img", {
-//       // opacity:0,
-//       y: "130%",
-//       // delay:1,
-//       duration: 2,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         // markers:true,
-//         // start: "-750% 60%",
-//         // end: "-700% 60%",
-//         start: "-270% 60%",
-//         end: "-250% 60%",
-//         scrub:5,
-//       },
-//     });
-//     gsap.from("#card-one .left-cd1", {
-//       // opacity:0,
-//       y: "-110%",
-//       // delay:1,
-//       duration: 2,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         // markers:true,
-//         start: "-270% 60%",
-//         end: "-250% 60%",
-//         // start: "-750% 60%",
-//         // end: "-700% 60%",
-//         scrub:5,
-//       },
-//     });
-//     gsap.from("#card-two img", {
-//       opacity: 0,
-//       y: "25",
-//       delay: 1,
-//       duration: 1,
-//       stagger: 0.3,
-//       scrollTrigger: {
-//         trigger: "#card-one img",
-//         start: "-200% 70%",
-//         end: "-160% 84%",
-//         // start: "-500% 70%",
-//         // end: "-420% 70%",
-//         // markers:true,
-//         scrub: 5,
-//       },
-//     });
-//   }
-// }
-
-// // Attach the function to the resize event
-// window.addEventListener('resize', handleViewportChange);
-
-// // Call the function on page load
-// handleViewportChange();
